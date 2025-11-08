@@ -2,11 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global tweaks */
+html { scroll-behavior: smooth; }
+
 body {
-    @apply bg-gray-50 text-gray-900 antialiased;
+    background-image:
+            radial-gradient(1000px 600px at 50% -200px, rgba(56, 182, 130, 0.08), transparent),
+            radial-gradient(800px 400px at -100px 200px, rgba(56, 182, 130, 0.06), transparent),
+            radial-gradient(800px 400px at 110% 300px, rgba(56, 182, 130, 0.06), transparent);
 }
 
-html {
-    scroll-behavior: smooth;
+::selection {
+    background: rgba(56, 182, 130, 0.25);
+    color: #0b0f0d;
 }
+
+.shadow-soft { box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
