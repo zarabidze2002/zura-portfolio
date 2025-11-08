@@ -1,79 +1,243 @@
-import Container from "../components/container";
-import Button from "../components/button";
-import Card from "../components/card";
-import Section from "../components/section";
 import Footer from "../components/footer";
+import Section from "../components/section";
+import Card from "../components/card";
+import Button from "../components/button";
 
-const projects = [
-    {
-        title: "UI Components Kit",
-        desc: "Reusable React + Tailwind components built for speed.",
-        github: "https://github.com/zarabidze2002",
-        live: "#"
-    },
-    {
-        title: "Portfolio (this site)",
-        desc: "Next.js 15, Turborepo, Tailwind, dark mode.",
-        github: "https://github.com/zarabidze2002/zura-portfolio",
-        live: "#"
-    },
-    {
-        title: "Form Builder",
-        desc: "Dynamic forms with schema + validation.",
-        github: "https://github.com/zarabidze2002",
-        live: "#"
-    }
-];
+import { about } from "@/data/about";
+import { projects } from "@/data/projects";
+import { contact } from "@/data/contact";
+import { meta } from "@/data/meta";
+import { socials } from "@/data/socials";
+import { education } from "@/data/education";
+import { experience } from "@/data/experience";
+import { skills } from "@/data/skills";
+
+import Hero from "@/components/sections/Hero";
+
+export const metadata = {
+    title: meta.title,
+    description: meta.description,
+};
 
 export default function Page() {
     return (
         <>
-            {/* Hero */}
-            <Container className="py-20 text-center">
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Hello, I’m Zura 👋</h1>
-                <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-                    Front-End Engineer — React + TypeScript Developer
-                </p>
-                <a href="#projects">
-                    <Button className="mt-8">View Projects</Button>
-                </a>
-            </Container>
+            {/* HERO */}
+            <Hero />
 
-            {/* About */}
-            <Section id="about" title="About">
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    I build clean, accessible interfaces with React + TypeScript. I care about performance,
-                    DX, and creating UI systems that scale. Currently crafting my portfolio and open-source components.
-                </p>
-            </Section>
+            {/* ABOUT */}
+            {about.highlights?.length ? (
+                <Section
+                    id="about"
+                    title="About"
+                    align="left"
+                    subtitle="A few things I focus on when building products."
+                >
+                    <ul className="grid gap-3 md:grid-cols-3">
+                        {about.highlights.map((h: string) => (
+                            <li
+                                key={h}
+                                className="rounded-2xl border bg-white/60 p-4 text-sm text-gray-700 shadow-sm backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/60 dark:text-gray-300"
+                            >
+                                {h}
+                            </li>
+                        ))}
+                    </ul>
+                </Section>
+            ) : null}
 
-            {/* Projects */}
-            <Section id="projects" title="Projects">
-                <div className="grid gap-6 md:grid-cols-3">
-                    {projects.map((p) => (
-                        <Card key={p.title} title={p.title}>
-                            <p className="text-sm text-gray-600 dark:text-gray-300">{p.desc}</p>
-                            <div className="mt-4 flex gap-2">
-                                <a href={p.github} target="_blank" rel="noreferrer">
-                                    <Button variant="outline">GitHub</Button>
-                                </a>
-                                <a href={p.live} target="_blank" rel="noreferrer">
-                                    <Button variant="subtle">Live</Button>
-                                </a>
-                            </div>
-                        </Card>
+            {/* SKILLS */}
+            {skills?.length ? (
+                <Section
+                    id="skills"
+                    title="Skills"
+                    align="left"
+                    subtitle="Core technologies and tools I use day-to-day."
+                >
+                    <ul className="grid gap-4 md:grid-cols-3">
+                        {skills.map((g: any) => (
+                            <li
+                                key={g.group}
+                                className="rounded-2xl border bg-white/50 p-4 dark:border-neutral-800 dark:bg-neutral-900/50"
+                            >
+                                <h3 className="text-sm font-semibold">{g.group}</h3>
+                                <div className="mt-3 flex flex-wrap gap-2">
+                                    {g.items.map((it: string) => (
+                                        <span
+                                            key={it}
+                                            className="rounded-md bg-gray-100 px-2 py-1 text-xs dark:bg-neutral-800"
+                                        >
+                      {it}
+                    </span>
+                                    ))}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </Section>
+            ) : null}
+
+            {/* PROJECTS */}
+            <Section
+                id="projects"
+                title="Projects"
+                align="left"
+                subtitle="Selected work: workflow tooling, reusable UI systems, and this site."
+            >
+                <ul className="grid gap-6 md:grid-cols-3">
+                    {projects.map((p: any) => (
+                        <li key={p.title} className="h-full">
+                            <Card
+                                className="flex h-full flex-col rounded-2xl"
+                                title={p.title}
+                            >
+                                <p className="text-sm text-gray-600 dark:text-gray-300">
+                                    {p.description}
+                                </p>
+
+                                {p.tech?.length ? (
+                                    <div className="mt-3 flex flex-wrap gap-2">
+                                        {p.tech.map((t: string) => (
+                                            <span
+                                                key={t}
+                                                className="rounded-md bg-gray-100 px-2 py-1 text-xs dark:bg-neutral-800"
+                                            >
+                        {t}
+                      </span>
+                                        ))}
+                                    </div>
+                                ) : null}
+
+                                <div className="mt-4 flex gap-2">
+                                    {p.github && (
+                                        <a href={p.github} target="_blank" rel="noreferrer">
+                                            <Button variant="outline">GitHub</Button>
+                                        </a>
+                                    )}
+                                    {p.live && (
+                                        <a href={p.live} target="_blank" rel="noreferrer">
+                                            <Button variant="subtle">Live</Button>
+                                        </a>
+                                    )}
+                                </div>
+                            </Card>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </Section>
 
-            {/* Contact */}
-            <Section id="contact" title="Contact">
+            {/* EXPERIENCE */}
+            {experience?.length ? (
+                <Section
+                    id="experience"
+                    title="Experience"
+                    align="left"
+                    subtitle="Work history and impact highlights."
+                >
+                    <ul className="space-y-6">
+                        {experience.map((job: any) => (
+                            <li
+                                key={`${job.company}-${job.period}`}
+                                className="rounded-2xl border bg-white/60 p-5 dark:border-neutral-800 dark:bg-neutral-900/60"
+                            >
+                                <div className="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
+                                    <h3 className="text-lg font-semibold">
+                                        {job.title} — {job.company}
+                                    </h3>
+                                    <span className="text-sm text-gray-500">{job.period}</span>
+                                </div>
+
+                                {job.stack?.length ? (
+                                    <div className="mt-3 flex flex-wrap gap-2">
+                                        {job.stack.map((t: string) => (
+                                            <span
+                                                key={t}
+                                                className="rounded-md bg-gray-100 px-2 py-1 text-xs dark:bg-neutral-800"
+                                            >
+                        {t}
+                      </span>
+                                        ))}
+                                    </div>
+                                ) : null}
+
+                                {job.bullets?.length ? (
+                                    <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-700 dark:text-gray-300">
+                                        {job.bullets.map((b: string, i: number) => (
+                                            <li key={i}>{b}</li>
+                                        ))}
+                                    </ul>
+                                ) : null}
+                            </li>
+                        ))}
+                    </ul>
+                </Section>
+            ) : null}
+
+            {/* EDUCATION */}
+            {education?.length ? (
+                <Section
+                    id="education"
+                    title="Education"
+                    align="left"
+                    subtitle="Degrees and certifications."
+                >
+                    <ul className="grid gap-4 md:grid-cols-2">
+                        {education.map((e: any) => (
+                            <li
+                                key={`${e.school}-${e.period}`}
+                                className="rounded-2xl border bg-white/60 p-5 dark:border-neutral-800 dark:bg-neutral-900/60"
+                            >
+                                <h3 className="text-base font-semibold">{e.school}</h3>
+                                <p className="text-sm text-gray-600 dark:text-gray-300">
+                                    {e.degree}
+                                </p>
+                                <p className="text-xs text-gray-500">{e.period}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </Section>
+            ) : null}
+
+            {/* CONTACT */}
+            <Section
+                id="contact"
+                title="Contact"
+                align="left"
+                subtitle="Open to roles and collaborations."
+            >
                 <p className="text-gray-600 dark:text-gray-300">
-                    Open to roles and collaborations. Reach me at{" "}
-                    <a href="mailto:zura.arabidze.2020@gmail.com" className="text-primary-600 dark:text-primary-400 underline">
-                        zura.arabidze.2020@gmail.com
-                    </a>.
+                    {contact.note}{" "}
+                    <a
+                        href={`mailto:${contact.email}`}
+                        className="text-primary-600 underline dark:text-primary-400"
+                    >
+                        {contact.email}
+                    </a>
+                    .
                 </p>
+
+                <div className="mt-6 flex gap-4 text-sm">
+                    {socials?.github && (
+                        <a
+                            className="underline"
+                            href={socials.github}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            GitHub
+                        </a>
+                    )}
+                    {socials?.linkedin && (
+                        <a
+                            className="underline"
+                            href={socials.linkedin}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            LinkedIn
+                        </a>
+                    )}
+                </div>
             </Section>
 
             <Footer />

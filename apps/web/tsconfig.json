@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": [
-      "DOM",
-      "ES2022"
-    ],
+    "lib": ["DOM", "ES2022"],
     "jsx": "preserve",
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -17,20 +14,14 @@
     "isolatedModules": true,
     "incremental": true,
     "resolveJsonModule": true,
+
     "baseUrl": ".",
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "paths": {              // ← ADD THIS
+      "@/*": ["./*"]        // ← ADD THIS
+    },
+
+    "plugins": [{ "name": "next" }]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
