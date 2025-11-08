@@ -71,7 +71,7 @@ export default function Page() {
                 <p className="text-gray-600 dark:text-gray-300">
                     Open to roles and collaborations. Reach me at{" "}
                     <a href="mailto:zura.arabidze.2020@gmail.com" className="text-primary-600 dark:text-primary-400 underline">
-                        zuraarabidze.dev@gmail.com
+                        zura.arabidze.2020@gmail.com
                     </a>.
                 </p>
             </Section>
