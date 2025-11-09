@@ -19,7 +19,7 @@ export default function Navbar() {
         <header className="sticky top-0 z-50 border-b border-gray-100/60 dark:border-gray-800/60 bg-white/70 dark:bg-gray-900/70 backdrop-blur-md">
             <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
                 <Link href="/" className="font-semibold text-xl text-primary-600 dark:text-primary-400">
-                    Zura<span className="text-gray-700 dark:text-gray-300">.dev</span>
+                    Zura{' '}<span className="text-gray-700 dark:text-gray-300">Arabidze</span>
                 </Link>
 
                 {/* Mobile toggle */}
